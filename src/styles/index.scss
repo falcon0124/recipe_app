@@ -48,6 +48,7 @@ a{
             color: var(--text-light);
             letter-spacing: 2px;
             text-transform: uppercase;
+            font-size: 0.8em;
             position: relative;
             &::before{
                 content: "";
@@ -130,4 +131,44 @@ a{
         }
     }
     
+}
+
+@import "partials/animations";
+.sidebar{
+    position:fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 200px;
+    background-color: var(--background-color);
+    box-shadow: 0 0 0 1000px rgba(0,0,0,0.2),
+                3px 0 5px var(--shadow-colo);
+    animation: getAnimationDuration(0.3s) slideInLeft;
+}
+.sideBar-links{
+    display: block;
+    padding: .5em 1em;
+    border-left: .4em solid transparent;
+    margin-bottom: 1em;
+    color: var(--text-color);
+    font-size: 1.1em;
+    transform: translateX(-100%);
+    animation: getAnimationDuration(0.3s) slideInLeft forwards;
+    @for $i from 1 through 3{
+        &:nth-child(#{$i}){
+            animation-delay: #{$i * .1}s;
+        }
+    }
+    &:active{
+        border-left-color: var(--primary-color);
+    }
+    &:hover{
+        border-left-color: var(--primary-color);
+        background-color: rgba(0,0,0,0.5);
+    }
+    svg{
+        width: 1.2em;
+        margin-right:.5em;
+
+    }
 }
