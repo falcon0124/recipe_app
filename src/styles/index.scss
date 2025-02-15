@@ -1,7 +1,7 @@
 :root{
     --background-color: #fff;
     --background-light: #fff;
-    --shadow-colo: rgba(0,0,0,0.2);
+    --shadow-color: rgba(0,0,0,0.2);
     --primary-color: rgba(255, 0, 86, 1);
     --text-color: #0a0a0a;
     --text-light: #575757;
@@ -25,98 +25,72 @@ body{
 a{
     text-decoration: none;
 }
-.navbar{
-    height: 55px;
-    box-shadow: 0 3px 6px var(--shadow-colo);
-    background-color: var(--background-color);
-    color: var(--text-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    .logo{
-        font-size: 1.5em;
-        font-weight: bolder;
-        color: var(--primary-color);
-        span{
-            color: var(--text-color);
-            text-shadow: 0 1px 3px var(--shadow-colo);
-        }
-    }
-    .nav-links{
-        a{
-            margin-left: 1em;
-            color: var(--text-light);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-size: 0.8em;
-            position: relative;
-            &::before{
-                content: "";
-                display: inline-block;
-                height: 3px;
-                width: 100%;
-                background-color: var(--primary-color);
-                position: absolute;
-                bottom: -3px;
-                left: 0;
-                transform: scaleX(0);
-                transition: transform calc(var(--animation-speed) * 0.2s) ease-in-out;
-            }
-            &:hover{
-                &::before{
-                    transform: scaleX(1);
-                }
-            }
-            &.active{
-                color: var(--primary-color);
-                font-weight: bold;
-            }
-        }
-    }
-    .sidebar-btn{
-        height: 28px;
-        width: 30px;
-        position: relative;
-        display: none;
-        .bar{
-            height: 6px;
-            width: 100%;
-            background-color: var(--text-color);
-            position: absolute;
-            border-radius: 5px;
-            transition: transform getAnimationDuration(.5s) ease-in-out;
-            &:nth-child(1){
-                top: 0;
-            }
-            &:nth-child(2){
-                top: 50%;
-                transform-origin: right;
-                transform: scaleX(.8) translateY(-50%);
-            }
-            &:nth-child(3){
-                top: 100%;
-                transform: translateY(-100%);
-            }
-
-        }
-        &.active{
-            .bar{
-                transform-origin: center;
-                top: 50%;
-                &:nth-child(1){
-                    transform: translate(0, -50%) scale(1) rotate(45deg) ;
-                }
-                &:nth-child(2){
-                    transform: scale(0) translate(-50%)  ;
-                }
-                &:nth-child(3){
-                    transform: translate(0, -50%) scale(1) rotate(-45deg) ;
-                }
-            }
-        }
+img{
+    object-fit: cover;
+}
+.btn{
+    border: none;
+    outline: none;
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: .75em 1em;
+    text-transform: uppercase;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+    border-radius: 3px;
+    font-weight: bold;
+    box-shadow: 0 2px 6px var(--shadow-color);
+    &:hover{
+        box-shadow: 0 1px 3px var(--shadow-color);
     }
 }
+.section{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 3vw;
+    &.d-block{
+        display: block;
+    }
+    .title{
+        color: var(--text-color);
+        font-size: 2.5em;
+        margin-bottom: .25em;
+        font-weight: 900;
+    }
+    .info{
+        color: var(--text-light);
+        font-size: 1em;
+        letter-spacing: 1px;
+        line-height: 1.3;
+        margin-bottom: 1.25em;
 
+    }
+    .col{
+        width: 50%;
+    }
+}
+.custom-image{
+    background-color: red;
+    height: 0;
+    width: 100%;
+    position: relative;
+    img{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
+.main{
+    padding-block: 3vw
+}
+@import "partials/improveskills";
+
+@import "partials/herosect";
+@import "partials/navvar";
+@import "partials/animations";
 .container{
     padding-inline: 15vw;
 }
@@ -133,7 +107,6 @@ a{
     
 }
 
-@import "partials/animations";
 .sidebar{
     position:fixed;
     top: 0;
@@ -142,7 +115,7 @@ a{
     width: 200px;
     background-color: var(--background-color);
     box-shadow: 0 0 0 1000px rgba(0,0,0,0.2),
-                3px 0 5px var(--shadow-colo);
+                3px 0 5px var(--shadow-color);
     animation: getAnimationDuration(0.3s) slideInLeft;
 }
 .sideBar-links{
