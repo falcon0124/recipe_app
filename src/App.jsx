@@ -3,6 +3,7 @@ import Navbar from './components/navbar'
 import HeroSection from './components/heroSection'
 import ImproveSkills from './components/improveSkills'
 import QouteSection from './components/QuotesSect'
+import ChiefsSection from './components/chefs'
 
 function App() {
  
@@ -15,6 +16,7 @@ function App() {
         <HeroSection />
         <ImproveSkills />
         <QouteSection />
+        <ChiefsSection />
       </div>
     </>
   )
