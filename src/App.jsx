@@ -4,6 +4,7 @@ import HeroSection from './components/heroSection'
 import ImproveSkills from './components/improveSkills'
 import QouteSection from './components/QuotesSect'
 import ChiefsSection from './components/chefs'
+import Footer from './components/footer'
 
 function App() {
  
@@ -18,6 +19,7 @@ function App() {
         <QouteSection />
         <ChiefsSection />
       </div>
+      <Footer />
     </>
   )
 }
