@@ -96,20 +96,9 @@ img{
 @import "partials/footer";
 
 .container{
-    padding-inline: 15vw;
+    padding-inline: 25vw;
 }
 
-@media screen and (max-width: 786px) {
-    .navbar{
-        .nav-links{
-            display: none;
-        }
-        .sidebar-btn{
-            display: block;
-        }
-    }
-    
-}
 
 .sidebar{
     position:fixed;
@@ -117,6 +106,7 @@ img{
     left: 0;
     height: 100vh;
     width: 200px;
+    z-index: 1;
     background-color: var(--background-color);
     box-shadow: 0 0 0 1000px rgba(0,0,0,0.2),
                 3px 0 5px var(--shadow-color);
@@ -146,6 +136,63 @@ img{
     svg{
         width: 1.2em;
         margin-right:.5em;
-
+        
+    }
+}
+@media screen and (max-width: 1280px){
+    .container{
+        padding-inline: 18vw;
+    }
+}
+@media screen and (max-width: 1050px){
+    .container{
+        padding-inline: 12vw;
+    }
+}
+@media screen and (max-width: 786px) {
+    .navbar{
+        .nav-links{
+            display: none;
+        }
+        .sidebar-btn{
+            display: block;
+        }
+    }
+    .section{
+        .col{
+            width: 100%;
+            padding: 0 !important;
+            text-align: center;
+            margin-bottom: 2em;
+        }
+    }
+    .skill-item{
+        display: inline-block;
+        margin: .75em;
+    }
+    .section.improve-skills .btn{
+        display: block;
+        margin-left: 50%;
+        transform: translateX(-50%);
+    }
+    .chief-card{
+        box-shadow: 0 5px 10px var(--shadow-color);
+    }
+    .container{
+        padding-inline: 6vw;
+    }
+    .footer{
+        grid-template-columns: repeat(4, 1fr);
+        .footer-section:nth-child(1){
+            grid-column: span 4;
+        }
+        .footer-section:nth-child(2), .footer-section:nth-child(3){
+            grid-column: span 2;
+        }
+    }
+}
+@media screen and (max-width: 480px){
+    .container{
+        padding-inline: 3vw;
     }
 }
