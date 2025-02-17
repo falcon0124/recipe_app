@@ -1,79 +1,48 @@
-import PreviousSearches from "../components/PreviousSearches"
-import RecipeCard from "../components/RecipeCard"
+// src/pages/Recipes.js
+import React, { useState, useEffect } from 'react';
+import PreviousSearches from "../components/PreviousSearches";
+import RecipeCard from "../components/RecipeCard";
+import axios from 'axios';
 
-export default function Recipes(){
-    const recipes = [
-        {
-            title: "Chicken Pan Pizza",
-            image: "/img/gallery/img_1.jpg",
-            authorImg: "/img/top-chiefs/img_1.jpg",
-        }, 
-        {
-            title: "Spaghetti and Meatballs",
-            image: "/img/gallery/img_4.jpg",
-            authorImg: "/img/top-chiefs/img_2.jpg",
-        },
-        {
-            title: "American Cheese Burger",
-            image: "/img/gallery/img_5.jpg",
-            authorImg: "/img/top-chiefs/img_3.jpg",
-        },
-        {
-            title: "Mutton Biriyani",
-            image: "/img/gallery/img_6.jpg",
-            authorImg: "/img/top-chiefs/img_5.jpg",
-        },
-        {
-            title: "Japanese Sushi",
-            image: "/img/gallery/img_10.jpg",
-            authorImg: "/img/top-chiefs/img_6.jpg",
-        },
-        {
-            title: "Chicken Pan Pizza",
-            image: "/img/gallery/img_1.jpg",
-            authorImg: "/img/top-chiefs/img_1.jpg",
-        }, 
-        {
-            title: "Spaghetti and Meatballs",
-            image: "/img/gallery/img_4.jpg",
-            authorImg: "/img/top-chiefs/img_2.jpg",
-        },
-        {
-            title: "American Cheese Burger",
-            image: "/img/gallery/img_5.jpg",
-            authorImg: "/img/top-chiefs/img_3.jpg",
-        },
-        {
-            title: "Mutton Biriyani",
-            image: "/img/gallery/img_6.jpg",
-            authorImg: "/img/top-chiefs/img_5.jpg",
-        },
-        {
-            title: "Japanese Sushi",
-            image: "/img/gallery/img_10.jpg",
-            authorImg: "/img/top-chiefs/img_6.jpg",
-        },
-        {
-            title: "American Cheese Burger",
-            image: "/img/gallery/img_5.jpg",
-            authorImg: "/img/top-chiefs/img_3.jpg",
-        },
-        {
-            title: "Mutton Biriyani",
-            image: "/img/gallery/img_6.jpg",
-            authorImg: "/img/top-chiefs/img_5.jpg",
-        }
-    ].sort(() => Math.random() - 0.5)
+export default function Recipes() {
+    const [searchTerm, setSearchTerm] = useState('chicken');
+    const [recipes, setRecipes] = useState([]);
+
+    useEffect(() => {
+        const fetchRecipes = async () => {
+            try {
+                const response = await axios.get(
+                    `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchTerm}`
+                );
+                setRecipes(response.data.meals || []);
+            } catch (error) {
+                console.error('Error fetching recipes:', error);
+            }
+        };
+
+        fetchRecipes();
+    }, [searchTerm]);
 
     return (
         <div>
-            <PreviousSearches />
+            <PreviousSearches setSearchTerm={setSearchTerm} />
             <div className="recipes-container">
-                {/* <RecipeCard /> */}
-                {recipes.map((recipe, index) => (
-                    <RecipeCard key={index} recipe={recipe} />
-                ))}
+                {recipes.length > 0 ? (
+                    recipes.map((recipe, index) => (
+                        <RecipeCard 
+                            key={index} 
+                            recipe={{
+                                title: recipe.strMeal,
+                                image: recipe.strMealThumb,
+                                instruction: recipe.strInstructions,
+                                youtube: recipe.strYoutube
+                            }} 
+                        />
+                    ))
+                ) : (
+                    <p>No recipes found. Try searching something else!</p>
+                )}
             </div>
         </div>
-    )
+    );
 }
